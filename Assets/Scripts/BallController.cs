@@ -17,10 +17,10 @@ public class BallController : MonoBehaviour
     private Vector2 currentSwipe;
     private Color solveColor;
 
-    private void Start() 
+    private void Start()
     {
         solveColor = Random.ColorHSV(0.5f, 1);
-        GetComponent<MeshRenderer>().material.color =solveColor;
+        GetComponent<MeshRenderer>().material.color = solveColor;
     }
 
 
@@ -30,13 +30,13 @@ public class BallController : MonoBehaviour
         {
             rb.velocity = speed * travelDirection;
         }
-        
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position - (Vector3.up/2), 0.1f);
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position - (Vector3.up / 2), 0.1f);
         int i = 0;
-        while(i < hitColliders.Length)
+        while (i < hitColliders.Length)
         {
             GroundPiece ground = hitColliders[i].transform.GetComponent<GroundPiece>();
-            if(ground && !ground.isColored)
+            if (ground && !ground.isColored)
             {
                 ground.ChangeColor(solveColor);
             }
@@ -78,12 +78,12 @@ public class BallController : MonoBehaviour
                 if (currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
                 {
                     SetDestination(currentSwipe.x > 0 ? Vector3.right : Vector3.left);
-                }                
+                }
             }
             swipePosLastFrame = swipePosCurrentFrame;
         }
 
-        if(Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             swipePosLastFrame = Vector2.zero;
             currentSwipe = Vector2.zero;

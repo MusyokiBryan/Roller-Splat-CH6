@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void NextLevel()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             SceneManager.LoadScene(0);
         }
@@ -66,6 +66,6 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        
+
     }
 }
