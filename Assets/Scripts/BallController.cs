@@ -6,7 +6,10 @@ public class BallController : MonoBehaviour
 {
     public Rigidbody rb;
     public float speed = 15;
+    private AudioSource playerAudio;
 
+    public ParticleSystem fireParticle;
+    public AudioClip swipeSound;
     private bool isTravelling;
     private Vector3 travelDirection;
     private Vector3 nextCollisionPositon;
@@ -16,11 +19,11 @@ public class BallController : MonoBehaviour
     private Vector2 swipePosLastSwipe;
     private Vector2 currentSwipe;
     private Color solveColor;
-
     private void Start()
     {
         solveColor = Random.ColorHSV(0.5f, 1);
         GetComponent<MeshRenderer>().material.color = solveColor;
+        playerAudio = GetComponent<AudioSource>();
     }
 
 
@@ -51,6 +54,7 @@ public class BallController : MonoBehaviour
                 isTravelling = false;
                 travelDirection = Vector3.zero;
                 nextCollisionPositon = Vector3.zero;
+                fireParticle.Stop();
             }
         }
         if (isTravelling)
@@ -81,6 +85,7 @@ public class BallController : MonoBehaviour
                 }
             }
             swipePosLastFrame = swipePosCurrentFrame;
+            playerAudio.PlayOneShot(swipeSound, 1.0f);
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -100,6 +105,7 @@ public class BallController : MonoBehaviour
             nextCollisionPositon = hit.point;
         }
         isTravelling = true;
+        fireParticle.Play();
     }
 
 }
