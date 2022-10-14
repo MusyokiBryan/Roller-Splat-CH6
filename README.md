@@ -1,2 +1,2 @@
-# Roller-Splat CH5
- Game Up Africa CH5
+# Roller-Splat CH6
+ Game Up Africa CH6
